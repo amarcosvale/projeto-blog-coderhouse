@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'accounts',
     'messaging',
     'users',
-
 ]
 
 MIDDLEWARE = [
@@ -64,14 +63,13 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',
+                'django.template.context_processors.request',  # importante para forms de login
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
         },
     },
 ]
-
 
 WSGI_APPLICATION = 'blog_project.wsgi.application'
 
@@ -121,4 +119,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]  # pasta onde você coloca CSS, JS, imagens do template
+
+# Media (uploads de usuários)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'  # pasta onde os uploads vão ser salvos
+
+# Login / Logout
+LOGIN_REDIRECT_URL = 'home'       # para onde o usuário vai depois de logar
+LOGOUT_REDIRECT_URL = 'home'      # para onde vai depois de deslogar
+
+# Default primary key field type
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
